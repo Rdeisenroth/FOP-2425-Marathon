@@ -1,0 +1,21 @@
+[ {
+  "begin" : 4,
+  "goal" : 7,
+  "expected" : 4
+}, {
+  "begin" : 8,
+  "goal" : 15,
+  "expected" : 7
+}, {
+  "begin" : 1,
+  "goal" : 10,
+  "expected" : 5
+}, {
+  "begin" : 4,
+  "goal" : 18,
+  "expected" : 8
+}, {
+  "begin" : 5,
+  "goal" : 1,
+  "expected" : 2
+} ]
