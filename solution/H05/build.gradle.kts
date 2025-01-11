@@ -25,6 +25,11 @@ submission {
     requireTests = false
 }
 
+dependencies {
+    implementation("org.tudalgo:algoutils-tutor:0.9.1-FPI-SNAPSHOT")
+    implementation("org.tudalgo:algoutils-student:0.9.1-FPI-SNAPSHOT")
+}
+
 jagr {
     graders {
         val graderPublic by getting

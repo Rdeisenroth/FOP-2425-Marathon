@@ -270,7 +270,7 @@ public class H03_RubricProvider implements RubricProvider {
 
     @Override
     public void configure(RubricConfiguration configuration) {
-        configuration.addTransformer(() -> new SolutionMergingClassTransformer.Builder("h03")
+        configuration.addTransformer(new SolutionMergingClassTransformer.Builder("h03")
             .addSolutionClass("h03.Main")
             .addSolutionClass("h03.RobotsChallenge", "h03.robots.RobotsChallenge", "robots.RobotsChallenge")
             .addSolutionClass("h03.robots.DoublePowerRobot", "h03.DoublePowerRobot", "robot.DoublePowerRobot")

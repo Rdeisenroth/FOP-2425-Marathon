@@ -215,7 +215,7 @@ public class H05_RubricProvider implements RubricProvider {
 
     @Override
     public void configure(RubricConfiguration configuration) {
-        configuration.addTransformer(() -> new SolutionMergingClassTransformer.Builder("h05")
+        configuration.addTransformer(new SolutionMergingClassTransformer.Builder("h05")
             .addSolutionClass("h05.Airspace")
             .addSolutionClass("h05.CargoPlane")
             .addSolutionClass("h05.CargoStack")

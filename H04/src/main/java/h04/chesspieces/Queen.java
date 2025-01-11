@@ -1,13 +1,15 @@
 package h04.chesspieces;
 
 import fopbot.Robot;
-//Wichtig für Implementation
-//import h04.movement.MoveStrategy;
-import h04.template.ChessUtils;
+import h04.movement.DiagonalMover;
+import h04.movement.MoveStrategy;
+import h04.movement.OrthogonalMover;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-public class Queen extends Robot {
+public class Queen extends Robot implements OrthogonalMover, DiagonalMover {
     private final Team team;
 
     public Queen(final int x, final int y, final Team team) {
@@ -21,5 +23,16 @@ public class Queen extends Robot {
         return team;
     }
 
-    //TODO H4.6
+    @Override
+    public void moveStrategy(int dx, int dy, MoveStrategy strategy) {
+        strategy.move(this, dx, dy);
+    }
+
+    @Override
+    public Point[] getPossibleMoveFields() {
+        var res = new ArrayList<Point>();
+        res.addAll(Arrays.asList(getDiagonalMoves()));
+        res.addAll(Arrays.asList(getOrthogonalMoves()));
+        return res.toArray(Point[]::new);
+    }
 }

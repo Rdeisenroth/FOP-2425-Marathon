@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/H00" />
+    <file type="web" url="file://$PROJECT_DIR$/H01" />
+    <file type="web" url="file://$PROJECT_DIR$/H02" />
+    <file type="web" url="file://$PROJECT_DIR$/H03" />
+    <file type="web" url="file://$PROJECT_DIR$/H04" />
+    <file type="web" url="file://$PROJECT_DIR$/H05" />
+    <file type="web" url="file://$PROJECT_DIR$/H06" />
+    <file type="web" url="file://$PROJECT_DIR$/H07" />
+    <file type="web" url="file://$PROJECT_DIR$/solution/H00" />
+    <file type="web" url="file://$PROJECT_DIR$/solution/H01" />
+    <file type="web" url="file://$PROJECT_DIR$/solution/H02" />
+    <file type="web" url="file://$PROJECT_DIR$/solution/H03" />
+    <file type="web" url="file://$PROJECT_DIR$/solution/H04" />
+    <file type="web" url="file://$PROJECT_DIR$/solution/H05" />
+    <file type="web" url="file://$PROJECT_DIR$/solution/H06" />
+    <file type="web" url="file://$PROJECT_DIR$/solution/H07" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="temurin-21 (2)" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -170,7 +170,7 @@ public class H04_RubricProvider implements RubricProvider {
 
     @Override
     public void configure(RubricConfiguration configuration) {
-        configuration.addTransformer(() -> new SolutionMergingClassTransformer.Builder("h04")
+        configuration.addTransformer(new SolutionMergingClassTransformer.Builder("h04")
             .addSolutionClass("h04.chesspieces.Bishop")
             .addSolutionClass("h04.chesspieces.ChessPiece")
             .addSolutionClass("h04.chesspieces.Families")

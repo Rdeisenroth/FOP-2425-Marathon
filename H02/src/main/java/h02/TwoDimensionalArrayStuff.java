@@ -18,7 +18,8 @@ public class TwoDimensionalArrayStuff {
     }
 
     /**
-     * Returns an array containing the number of occurrences of the query {@link String} in each line of the input array.
+     * Returns an array containing the number of occurrences of the query {@link String} in each line of the input
+     * array.
      *
      * @param input the input array
      * @param query the query {@link String}
@@ -27,7 +28,10 @@ public class TwoDimensionalArrayStuff {
     @StudentImplementationRequired("H2.1.2")
     public static int[] occurrences(final String[][] input, final String query) {
         // TODO: H2.1.2
-        return org.tudalgo.algoutils.student.Student.crash("H2.1.2 - Remove if implemented");
+        return Arrays.stream(input)
+            .map(line -> Arrays.stream(line).filter(query::equals).count())
+            .mapToInt(Long::intValue)
+            .toArray();
     }
 
     /**
@@ -39,7 +43,7 @@ public class TwoDimensionalArrayStuff {
     @StudentImplementationRequired("H2.1.2")
     public static float mean(final int[] input) {
         // TODO: H2.1.2
-        return org.tudalgo.algoutils.student.Student.crash("H2.1.2 - Remove if implemented");
+        return (float) Arrays.stream(input).reduce(0, Integer::sum) / input.length;
     }
 
     /**

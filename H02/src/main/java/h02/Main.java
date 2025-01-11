@@ -2,7 +2,11 @@ package h02;
 
 import fopbot.RobotFamily;
 import fopbot.World;
+import org.tudalgo.algoutils.student.Student;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
+import org.tudalgo.algoutils.student.test.StudentTestUtils;
+
+import java.util.Arrays;
 
 import static org.tudalgo.algoutils.student.io.PropertyUtils.getIntProperty;
 import static org.tudalgo.algoutils.student.test.StudentTestUtils.printTestResults;
@@ -18,6 +22,7 @@ public class Main {
      * @param args program arguments, currently ignored
      */
     public static void main(final String[] args) {
+        Student.setCrashEnabled(false);
         // H1
         sanityChecksH211();
         sanityChecksH212();
@@ -41,7 +46,6 @@ public class Main {
     @StudentImplementationRequired("H2.3")
     public static void sanityChecksH211() {
         // TODO: H2.3
-        org.tudalgo.algoutils.student.Student.crash("H2.3 - Remove if implemented");
     }
 
     /**

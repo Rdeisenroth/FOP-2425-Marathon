@@ -25,7 +25,10 @@ public class OneDimensionalArrayStuff {
     @StudentImplementationRequired("H2.1.1")
     public static int[] push(final int[] array, final int value) {
         // TODO: H2.1.1
-        return org.tudalgo.algoutils.student.Student.crash("H2.1.1 - Remove if implemented");
+        final var dest = new int[array.length + 1];
+        System.arraycopy(array, 0, dest, 0, array.length);
+        dest[dest.length - 1] = value;
+        return dest;
     }
 
     /**
@@ -38,7 +41,8 @@ public class OneDimensionalArrayStuff {
     @StudentImplementationRequired("H2.1.1")
     public static int[] calculateNextFibonacci(final int[] array) {
         // TODO: H2.1.1
-        return org.tudalgo.algoutils.student.Student.crash("H2.1.1 - Remove if implemented");
+        var next = array[array.length - 1] + array[array.length - 2];
+        return push(array, next);
     }
 
     /**
@@ -50,6 +54,13 @@ public class OneDimensionalArrayStuff {
     @StudentImplementationRequired("H2.1.1")
     public static int fibonacci(final int n) {
         // TODO: H2.1.1
-        return org.tudalgo.algoutils.student.Student.crash("H2.1.1 - Remove if implemented");
+        if (n < 2) {
+            return n;
+        }
+        var fib = new int[]{0, 1};
+        for (int i = 2; i <= n; i++) {
+            fib = calculateNextFibonacci(fib);
+        }
+        return fib[fib.length - 1];
     }
 }

@@ -70,7 +70,7 @@ public class FourWins {
     @StudentImplementationRequired("H2.2.1")
     public static boolean validateInput(final int column, final RobotFamily[][] stones) {
         // TODO: H2.2.1
-        return org.tudalgo.algoutils.student.Student.crash("H2.2.1 - Remove if implemented");
+        return column >= 0 && column < stones[0].length;
     }
 
 
@@ -86,7 +86,11 @@ public class FourWins {
     @StudentImplementationRequired("H2.2.2")
     public static int getDestinationRow(final int column, final RobotFamily[][] stones) {
         // TODO: H2.2.2
-        return org.tudalgo.algoutils.student.Student.crash("H2.2.2 - Remove if implemented");
+        int row = 0;
+        while (row < stones.length && stones[row][column] != null) {
+            row++;
+        }
+        return row == stones.length ? -1 : row;
     }
 
     /**
@@ -105,7 +109,15 @@ public class FourWins {
     @StudentImplementationRequired("H2.2.2")
     public static void dropStone(final int column, final RobotFamily[][] stones, final RobotFamily currentPlayer) {
         // TODO: H2.2.2
-        org.tudalgo.algoutils.student.Student.crash("H2.2.2 - Remove if implemented");
+        var row = getDestinationRow(column, stones);
+        if (row < 0) {
+            return;
+        }
+        var stone = new Robot(column, stones.length - 1, Direction.DOWN, 0, currentPlayer);
+        while (stone.getY() > row) {
+            stone.move();
+        }
+        stones[row][column] = stone.getRobotFamily();
     }
 
 
@@ -121,7 +133,7 @@ public class FourWins {
     @StudentImplementationRequired("H2.2.3")
     public static boolean testWinConditions(final RobotFamily[][] stones, final RobotFamily currentPlayer) {
         // TODO: H2.2.3
-        return org.tudalgo.algoutils.student.Student.crash("H2.2.3 - Remove if implemented");
+        return testWinHorizontal(stones, currentPlayer) || testWinVertical(stones, currentPlayer) || testWinDiagonal(stones, currentPlayer);
     }
 
     /**
@@ -135,7 +147,20 @@ public class FourWins {
     @StudentImplementationRequired("H2.2.3")
     public static boolean testWinHorizontal(final RobotFamily[][] stones, final RobotFamily currentPlayer) {
         // TODO: H2.2.3
-        return org.tudalgo.algoutils.student.Student.crash("H2.2.3 - Remove if implemented");
+        for (int row = 0; row < stones.length; row++) {
+            int count = 0;
+            for (int col = 0; col < stones[row].length; col++) {
+                if (stones[row][col] == currentPlayer) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                if (count >= 4) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -149,7 +174,20 @@ public class FourWins {
     @StudentImplementationRequired("H2.2.3")
     public static boolean testWinVertical(final RobotFamily[][] stones, final RobotFamily currentPlayer) {
         // TODO: H2.2.3
-        return org.tudalgo.algoutils.student.Student.crash("H2.2.3 - Remove if implemented");
+        for (int col = 0; col < stones[0].length; col++) {
+            int count = 0;
+            for (int row = 0; row < stones.length; row++) {
+                if (stones[row][col] == currentPlayer) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                if (count >= 4) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -208,7 +246,7 @@ public class FourWins {
     @StudentImplementationRequired("H2.2.4")
     public static RobotFamily nextPlayer(final RobotFamily currentPlayer) {
         // TODO: H2.2.4
-        return org.tudalgo.algoutils.student.Student.crash("H2.2.4 - Remove if implemented");
+        return currentPlayer == RobotFamily.SQUARE_BLUE ? RobotFamily.SQUARE_RED : RobotFamily.SQUARE_BLUE;
     }
 
     /**
@@ -219,7 +257,7 @@ public class FourWins {
         inputHandler.displayDrawStatus();
 
         // TODO: H2.2.4
-        org.tudalgo.algoutils.student.Student.crash("H2.2.4 - Remove if implemented");
+        System.out.println("No valid columns found. Hence, game ends with a draw.");
     }
 
     /**
@@ -232,7 +270,7 @@ public class FourWins {
         inputHandler.displayWinnerStatus(winner);
 
         // TODO: H2.2.4
-        org.tudalgo.algoutils.student.Student.crash("H2.2.4 - Remove if implemented");
+        System.out.printf("Player %s wins the game!", winner.getName());
     }
 
     /**
@@ -244,7 +282,11 @@ public class FourWins {
     @StudentImplementationRequired("H2.2.4")
     public static void colorFieldBackground(final RobotFamily winner) {
         // TODO: H2.2.4
-        org.tudalgo.algoutils.student.Student.crash("H2.2.4 - Remove if implemented");
+        for (int i = 0; i < World.getHeight(); i++) {
+            for (int j = 0; j < World.getWidth(); j++) {
+                setFieldColor(j, i, winner);
+            }
+        }
     }
 
     /**
@@ -266,7 +308,8 @@ public class FourWins {
         while (!finished) {
             // TODO: H2.2.4
             // set next player
-            org.tudalgo.algoutils.student.Student.crash("H2.2.4 - Remove if implemented");
+            currentPlayer = nextPlayer(currentPlayer);
+//            org.tudalgo.algoutils.student.Student.crash("H2.2.4 - Remove if implemented");
 
             // wait for click in column (DO NOT TOUCH)
             finished = draw = isGameBoardFull(stones);
@@ -277,8 +320,11 @@ public class FourWins {
 
             // TODO: H2.2.4
             // let stone drop
+            dropStone(column, stones, currentPlayer);
             // test win conditions
-            org.tudalgo.algoutils.student.Student.crash("H2.2.4 - Remove if implemented");
+            if (testWinConditions(stones, currentPlayer)) {
+                finished = true;
+            }
         }
 
         // displaying either draw or winner (DO NOT TOUCH)
@@ -342,4 +388,7 @@ public class FourWins {
         return finished;
     }
 
+    public InputHandler getInputHandler() {
+        return inputHandler;
+    }
 }

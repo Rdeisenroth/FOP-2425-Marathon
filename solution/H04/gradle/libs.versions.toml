@@ -1,5 +1,5 @@
 [versions]
-algoutils = "0.9.1-SNAPSHOT"
+algoutils = "0.9.1-FPI-SNAPSHOT"
 
 [plugins]
 algomate = { id = "org.tudalgo.algomate", version = "0.7.1" }

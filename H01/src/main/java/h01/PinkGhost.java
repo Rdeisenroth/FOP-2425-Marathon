@@ -1,5 +1,6 @@
 package h01;
 
+import fopbot.Direction;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 import fopbot.Robot;
@@ -7,6 +8,8 @@ import h01.template.Families;
 import h01.template.Ghost;
 import h01.template.TickBased;
 import h01.template.Util;
+
+import java.util.ArrayList;
 
 /**
  * The {@link PinkGhost} is a {@link Robot} that looks like a pink ghost.
@@ -31,6 +34,17 @@ public class PinkGhost extends Robot implements Ghost, TickBased {
     @Override
     @StudentImplementationRequired("H2.2")
     public void doMove() {
-        org.tudalgo.algoutils.student.Student.crash("H2.2 - Remove if implemented");
+        var freeDirections=new ArrayList<Direction>();
+        for (int i = 0; i < 4; i++) {
+            if(isFrontClear()){
+                freeDirections.add(getDirection());
+            }
+            turnLeft();
+        }
+        final var toTurn = freeDirections.get(Util.getRandomInteger(1, freeDirections.size())-1);
+        while(getDirection() != toTurn){
+            turnLeft();
+        }
+        move();
     }
 }
