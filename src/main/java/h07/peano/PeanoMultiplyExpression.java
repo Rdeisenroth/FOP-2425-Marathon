@@ -4,7 +4,7 @@ import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 
 /**
  * Represents a multiplication operation in Peano arithmetic.
-*/
+ */
 @StudentCreationRequired
 public class PeanoMultiplyExpression implements PeanoArithmeticExpression {
     @Override
@@ -16,12 +16,11 @@ public class PeanoMultiplyExpression implements PeanoArithmeticExpression {
                 return num1;
             } else {
                 return () -> new PeanoAddExpression().evaluate(
-                    num1,
-                    new PeanoMultiplyExpression().evaluate(
                         num1,
-                        () -> naturalNumber2Peano.predecessor
-                    )
-                ).evaluate();
+                        new PeanoMultiplyExpression().evaluate(
+                                num1,
+                                () -> naturalNumber2Peano.predecessor))
+                        .evaluate();
             }
         } else {
             return Zero::new;
