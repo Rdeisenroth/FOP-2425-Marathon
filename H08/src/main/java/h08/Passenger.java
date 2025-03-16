@@ -1,8 +1,8 @@
 package h08;
 
-import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
-
 import java.time.LocalDate;
+
+import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 /**
  * Represents a passenger. A Passenger represents an individual with personal details and a unique identifier.
@@ -54,8 +54,7 @@ public class Passenger {
      */
     @StudentImplementationRequired("H8.1")
     private String generatePassengerID(String firstName, String lastName, LocalDate dateOfBirth) {
-        //TODO H8.1
-        return org.tudalgo.algoutils.student.Student.crash("H8.1 - Remove if implemented");
+        return String.format("%c%c%d", firstName.charAt(0), lastName.charAt(0), dateOfBirth.hashCode());
     }
 
     /**
@@ -102,10 +101,10 @@ public class Passenger {
     @Override
     public String toString() {
         return "Passenger{" +
-                "passengerID='" + passengerID + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                '}';
+            "passengerID='" + passengerID + '\'' +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", dateOfBirth=" + dateOfBirth +
+            '}';
     }
 }

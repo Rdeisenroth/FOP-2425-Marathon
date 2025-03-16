@@ -2,9 +2,13 @@ package h08;
 
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
+
+import h08.Exceptions.FlightNotFoundException;
 
 /**
- * Represents an airport. An airport manages departing and arriving flights, allowing for their addition, removal, and retrieval based on the airport code.
+ * Represents an airport. An airport manages departing and arriving flights, allowing for their addition, removal, and
+ * retrieval based on the airport code.
  */
 public class Airport {
 
@@ -56,7 +60,23 @@ public class Airport {
      */
     public void addFlight(Flight flight, boolean isDeparting) {
         //TODO H8.4.1
-        org.tudalgo.algoutils.student.Student.crash("H8.4.1 - Remove if implemented");
+        if (isDeparting) {
+            if (!flight.getDeparture().equals(airportCode)) {
+                throw new IllegalArgumentException("Flight's departure airport code does not match this airport's code");
+            }
+            if (departingSize >= departingFlights.length) {
+                departingFlights = Arrays.copyOf(departingFlights, departingFlights.length * 2);
+            }
+            departingFlights[departingSize++] = flight;
+            return;
+        }
+        if (!flight.getDestination().equals(airportCode)) {
+            throw new IllegalArgumentException("Flight's arrival airport code does not match this airport's code");
+        }
+        if (arrivingSize >= arrivingFlights.length) {
+            arrivingFlights = Arrays.copyOf(arrivingFlights, arrivingFlights.length * 2);
+        }
+        arrivingFlights[arrivingSize++] = flight;
     }
 
     /**
@@ -66,9 +86,26 @@ public class Airport {
      * @param isDeparting  if true, removes from departing flights, otherwise from arriving flights
      * @throws FlightNotFoundException if the flight is not found
      */
-    public void removeFlight(String flightNumber, boolean isDeparting) {
-        //TODO H8.4.2
-        org.tudalgo.algoutils.student.Student.crash("H8.4.2 - Remove if implemented");
+    public void removeFlight(String flightNumber, boolean isDeparting) throws FlightNotFoundException {
+        if (isDeparting) {
+            var pos = IntStream.range(0, departingSize)
+                .filter(x -> departingFlights[x].getFlightNumber().equals(flightNumber))
+                .findFirst()
+                .orElseThrow(() -> new FlightNotFoundException("Departing flight not found: " + flightNumber));
+            // set null
+            departingFlights[pos] = departingFlights[departingSize - 1];
+            departingFlights[departingSize - 1] = null;
+            departingSize--;
+            return;
+        }
+        var pos = IntStream.range(0, arrivingSize)
+            .filter(x -> arrivingFlights[x].getFlightNumber().equals(flightNumber))
+            .findFirst()
+            .orElseThrow(() -> new FlightNotFoundException("Arriving flight not found: "+ flightNumber));
+        // set null
+        arrivingFlights[pos] = arrivingFlights[arrivingSize - 1];
+        arrivingFlights[arrivingSize - 1] = null;
+        arrivingSize--;
     }
 
     /**
@@ -79,9 +116,17 @@ public class Airport {
      * @return the flight with the specified flight number
      * @throws FlightNotFoundException if the flight is not found
      */
-    public Flight getFlight(String flightNumber, boolean isDeparting) {
+    public Flight getFlight(String flightNumber, boolean isDeparting) throws FlightNotFoundException {
         //TODO H8.4.3
-        return org.tudalgo.algoutils.student.Student.crash("H8.4.3 - Remove if implemented");
+        return isDeparting
+               ? Arrays.stream(departingFlights).filter(x -> x.getFlightNumber().equals(flightNumber)).findFirst()
+                   .orElseThrow(
+                       () -> new FlightNotFoundException("Departing flight not found: " + flightNumber)
+                   )
+               : Arrays.stream(arrivingFlights).filter(x -> x.getFlightNumber().equals(flightNumber)).findFirst()
+                   .orElseThrow(
+                       () -> new FlightNotFoundException("Arriving flight not found: " + flightNumber)
+                   );
     }
 
 

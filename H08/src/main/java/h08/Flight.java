@@ -1,8 +1,10 @@
 package h08;
 
-import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
-
 import java.time.LocalDateTime;
+import java.util.stream.Stream;
+
+import h08.Exceptions.NoSeatsAvailableException;
+import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 /**
  * Represents a flight. A flight offers information such as the flight details and seat management.
@@ -40,7 +42,8 @@ public class Flight {
     private int availableSeats;
 
     /**
-     * Constructs a new flight with the specified flight number, departure airport, destination airport, departure time and initial number of seats.
+     * Constructs a new flight with the specified flight number, departure airport, destination airport, departure time
+     * and initial number of seats.
      *
      * @param flightNumber  the flight number of the flight
      * @param departure     the departure airport of the flight
@@ -57,6 +60,12 @@ public class Flight {
         this.initialSeats = initialSeats;
         this.availableSeats = initialSeats;
 
+        Stream.of(departure, destination, departureTime, initialSeats)
+            .forEach(x -> {
+                assert (x != null);
+            });
+        assert (initialSeats >= 0);
+        validateFlightNumber(flightNumber);
     }
 
     /**
@@ -67,7 +76,7 @@ public class Flight {
     @StudentImplementationRequired("H8.2.1")
     public void validateFlightNumber(String flightNumber) {
         //TODO H8.2.1
-        org.tudalgo.algoutils.student.Student.crash("H8.2.1 - Remove if implemented");
+        assert (flightNumber.matches("[A-Z]{2}\\d{3,4}"));
     }
 
     /**
@@ -116,12 +125,14 @@ public class Flight {
     }
 
     @StudentImplementationRequired("H8.2.2")
-    public void bookSeat() {
-        //TODO H8.2.2
-        org.tudalgo.algoutils.student.Student.crash("H8.2.2 - Remove if implemented");
+    public void bookSeat() throws NoSeatsAvailableException {
+        if (availableSeats <= 0) {
+            throw new NoSeatsAvailableException(flightNumber);
+        }
+        availableSeats--;
     }
 
-   public void cancelSeat() {
+    public void cancelSeat() {
         if (availableSeats < initialSeats) {
             availableSeats++;
         }

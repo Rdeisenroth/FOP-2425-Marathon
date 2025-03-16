@@ -1,7 +1,10 @@
 package h08;
 
+import h08.Exceptions.BookingAlreadyCancelledException;
+
 /**
- * Represents a flight booking. A booking allows the reservation of a flight as long as managing its identification and its relevant information.
+ * Represents a flight booking. A booking allows the reservation of a flight as long as managing its identification and
+ * its relevant information.
  */
 public class Booking {
 
@@ -80,9 +83,12 @@ public class Booking {
      *
      * @throws BookingAlreadyCancelledException if the booking is already cancelled
      */
-    public void cancelBooking() {
+    public void cancelBooking() throws BookingAlreadyCancelledException {
         //TODO H8.4.4
-        org.tudalgo.algoutils.student.Student.crash("H8.4.4 - Remove if implemented");
+        if (isCancelled()) {
+            throw new BookingAlreadyCancelledException("Booking is already cancelled: " + getBookingId());
+        }
+        isCancelled = true;
     }
 
     /**
@@ -91,7 +97,9 @@ public class Booking {
      * @return the booking details
      */
     public String viewBooking() {
-        return String.format("Booking ID: %s, Flight Number: %s, Passenger ID: %s, Is Cancelled: %b",
-            bookingId, flightNumber, passengerId, isCancelled);
+        return String.format(
+            "Booking ID: %s, Flight Number: %s, Passenger ID: %s, Is Cancelled: %b",
+            bookingId, flightNumber, passengerId, isCancelled
+        );
     }
 }
