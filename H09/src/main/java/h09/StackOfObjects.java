@@ -7,9 +7,9 @@ import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
  * An object of class {@link StackOfObjects} represents a data structure of type stack.
  */
 @SuppressWarnings({"ManualArrayCopy"})
-public class StackOfObjects<TODO_REPLACE> {
+public class StackOfObjects<O> {
     @StudentImplementationRequired("H9.1.1") // TODO: H9.1.1
-    private Object[] objs = new Object[0];
+    private O[] objs = (O[]) new Object[0];
 
     /**
      * Pushes the given object on this stack.
@@ -17,8 +17,8 @@ public class StackOfObjects<TODO_REPLACE> {
      * @param obj the object
      */
     @StudentImplementationRequired("H9.1.2") // TODO: H9.1.2
-    public void push(Object obj) {
-        Object[] newArray = new Object[objs.length + 1];
+    public void push(O obj) {
+        O[] newArray = (O[]) new Object[objs.length + 1];
         for (int i = 0; i < objs.length; i++) newArray[i] = objs[i];
         newArray[objs.length] = obj;
         objs = newArray;
@@ -30,10 +30,10 @@ public class StackOfObjects<TODO_REPLACE> {
      * @param obj the object
      */
     @StudentImplementationRequired("H9.1.3") // TODO: H9.1.3
-    public void remove(Object obj) {
-        Object[] newArray = new Object[objs.length - 1];
+    public void remove(O obj) {
+        O[] newArray = (O[]) new Object[objs.length - 1];
         int n = 0;
-        for (Object currObj : objs) {
+        for (O currObj : objs) {
             if (currObj == obj) continue;
             newArray[n++] = currObj;
         }
@@ -57,7 +57,7 @@ public class StackOfObjects<TODO_REPLACE> {
      * @return the object
      */
     @StudentImplementationRequired("H9.1.4") // TODO: H9.1.4
-    public Object get(int index) {
+    public O get(int index) {
         return objs[index];
     }
 
@@ -67,8 +67,8 @@ public class StackOfObjects<TODO_REPLACE> {
      * @return the top object
      */
     @StudentImplementationRequired("H9.1.4") // TODO: H9.1.4
-    public Object pop() {
-        Object o = get(objs.length - 1);
+    public O pop() {
+        O o = get(objs.length - 1);
         remove(o);
         return o;
     }
@@ -82,8 +82,8 @@ public class StackOfObjects<TODO_REPLACE> {
      */
     @SafeVarargs
     @StudentImplementationRequired("H9.1.5") // TODO: H9.1.5
-    public static StackOfObjects of(Object... objs) {
-        StackOfObjects stack = new StackOfObjects();
+    public static <O>StackOfObjects<O> of(O... objs) {
+        StackOfObjects<O> stack = new StackOfObjects<O>();
         stack.objs = objs;
         return stack;
     }

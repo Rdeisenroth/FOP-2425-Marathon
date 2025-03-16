@@ -1,24 +1,26 @@
 package h09;
 
-import h09.animals.Animal;
-import org.tudalgo.algoutils.student.annotation.DoNotTouch;
-import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
-
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import h09.abilities.Swims;
+import h09.animals.Animal;
+import org.tudalgo.algoutils.student.annotation.DoNotTouch;
+import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
+
 /**
- * An object of a class implementing {@link Enclosure} has the ability to contain and manage a stack of {@link Animal}s.
+ * An object of a class implementing {@link Enclosure} has the ability to contain and manage a stack of
+ * {@link Animal}s.
  */
 // TODO: H9.2.1
-public interface Enclosure<TODO_REPLACE> {
+public interface Enclosure<A extends Animal> {
     /**
      * @return the stack of animals which is used manage the contained {@link Animal}s
      */
     @StudentImplementationRequired("H9.2.1")
     // TODO: H9.2.1
-    StackOfObjects getStack();
+    StackOfObjects<A> getStack();
 
     /**
      * Feeds all contained animals.
@@ -47,7 +49,7 @@ public interface Enclosure<TODO_REPLACE> {
      * @param func operation to be applied to each {@link Animal} in the enclosure
      */
     @StudentImplementationRequired("H9.3.1") // TODO: H9.3.1
-    default void forEach(Consumer func) {
+    default void forEach(Consumer<? super A> func) {
         for (int i = 0; i < this.getStack().size(); i++)
             func.accept(this.getStack().get(i));
     }
@@ -60,9 +62,9 @@ public interface Enclosure<TODO_REPLACE> {
      * @param filter operation to test to each {@link Animal} in the enclosure
      */
     @StudentImplementationRequired("H9.3.2") // TODO: H9.3.2
-    default void filterObj(Predicate filter) {
+    default void filterObj(Predicate<? super A> filter) {
         for (int i = 0; i < this.getStack().size(); i++) {
-            Object a = this.getStack().get(i);
+            A a = this.getStack().get(i);
             if (!filter.test(a)) {
                 this.getStack().remove(a);
                 i--;
@@ -72,8 +74,8 @@ public interface Enclosure<TODO_REPLACE> {
 
     /**
      * Returns a new {@link Enclosure} that contains only the {@link Animal}s of the previous {@link Enclosure} which
-     * satisfied the predicate. That means only {@link Animal}s for which the predicate returns 'true' are included
-     * in the new enclosure.
+     * satisfied the predicate. That means only {@link Animal}s for which the predicate returns 'true' are included in
+     * the new enclosure.
      *
      * @param supp   {@link Supplier} which is used to create the new {@link Enclosure} to be returned
      * @param filter operation to test to each {@link Animal} in the enclosure
@@ -82,9 +84,15 @@ public interface Enclosure<TODO_REPLACE> {
      * satisfied the predicate
      */
     @StudentImplementationRequired("H9.3.3")
-    default Enclosure filterFunc(Supplier<Enclosure> supp, Predicate<Object> filter) {
-        // TODO: H9.3.3
-        return org.tudalgo.algoutils.student.Student.crash("H9.3.3 - Remove if implemented");
+    default <E extends Enclosure<A>> E filterFunc(Supplier<? extends E> supp, Predicate<? super A> filter) {
+        var res = supp.get();
+        for (int i = 0; i < getStack().size(); i++) {
+            var cur = getStack().get(i);
+            if (filter.test(cur)) {
+                res.getStack().push(cur);
+            }
+        }
+        return res;
     }
 
     /**
@@ -97,13 +105,16 @@ public interface Enclosure<TODO_REPLACE> {
      * {@link Predicate} which returns true if a swimming {@link Animal} swims at a low elevation.
      */
     @StudentImplementationRequired("H9.4.1") // TODO: H9.4.1
-    Predicate SWIMS_AT_LOW_ELEVATION = null;
+        Predicate<Swims> SWIMS_AT_LOW_ELEVATION = (s) -> s.getElevation() < Swims.HIGH_ELEVATION;
 
     /**
      * {@link Consumer} which lets the consumed {@link Animal} eat and sleep.
      */
     @StudentImplementationRequired("H9.4.2") // TODO: H9.4.2
-    Consumer FEED_AND_SLEEP = null;
+        Consumer<Animal> FEED_AND_SLEEP = a -> {
+        a.eat();
+        a.sleep();
+    };
 
     /**
      * Returns a {@link Consumer} which lets the consumed swimming {@link Animal} eat and swim down.
@@ -112,8 +123,11 @@ public interface Enclosure<TODO_REPLACE> {
      * @return a {@link Consumer} which lets the consumed swimming {@link Animal} eat and swim down
      */
     @StudentImplementationRequired("H9.4.3")
-    static Consumer EAT_AND_SINK() {
+    static <T extends Animal & Swims> Consumer<T> EAT_AND_SINK() {
         // TODO: H9.4.3
-        return org.tudalgo.algoutils.student.Student.crash("H9.4.3 - Remove if implemented");
+        return s -> {
+            s.eat();
+            s.swimDown();
+        };
     }
 }

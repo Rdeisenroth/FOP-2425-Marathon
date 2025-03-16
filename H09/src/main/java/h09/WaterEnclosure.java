@@ -9,25 +9,34 @@ import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
  * {@link Animal}s which have the ability to {@link Swims}.
  */
 // TODO: H9.2.2
-public class WaterEnclosure<TODO_REPLACE> {
+public class WaterEnclosure<A extends Animal & Swims> implements Enclosure<A> {
     /**
      * The stack of animals which is used manage the contained Animals.
      */
     @StudentImplementationRequired("H9.2.2") // TODO: H9.2.2
-    final StackOfObjects animals = null;
+    final StackOfObjects<A> animals = new StackOfObjects<>();
 
     @StudentImplementationRequired("H9.2.2")
     // @Override
-    public StackOfObjects getStack() {
+    public StackOfObjects<A> getStack() {
         // TODO: H9.2.2
-        return org.tudalgo.algoutils.student.Student.crash("H9.2.2 - Remove if implemented");
+        return animals;
     }
 
     @StudentImplementationRequired("H9.2.2")
     // @Override
     public void feed() {
         // TODO: H9.2.2
-        org.tudalgo.algoutils.student.Student.crash("H9.2.2 - Remove if implemented");
+        for (int i = 0; i < animals.size(); i++) {
+            var animal = animals.get(i);
+            if (animal.isHungry()) {
+                if (animal.getElevation() < Swims.HIGH_ELEVATION) {
+                    animal.swimUp();
+                }
+                animal.eat();
+                animal.swimDown();
+            }
+        }
     }
 
     /**
@@ -37,7 +46,11 @@ public class WaterEnclosure<TODO_REPLACE> {
      */
     @StudentImplementationRequired("H9.2.2")
     public float getMeanElevation() {
-        // TODO: H9.2.2
-        return org.tudalgo.algoutils.student.Student.crash("H9.2.2 - Remove if implemented");
+        float sum = 0;
+        for (int i = 0; i < animals.size(); i++) {
+            var animal = animals.get(i);
+            sum += animal.getElevation();
+        }
+        return sum / animals.size();
     }
 }
