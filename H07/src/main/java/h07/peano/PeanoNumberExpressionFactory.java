@@ -1,7 +1,11 @@
 package h07.peano;
 
 
+import h07.ConvertNumberToPeanoExpressionImpl;
+import h07.NumberExpression;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
+
+import java.util.Arrays;
 
 import static org.tudalgo.algoutils.student.Student.crash;
 
@@ -15,10 +19,12 @@ public class PeanoNumberExpressionFactory {
      * @param numberExpressions the number expressions to convert
      * @return the converted Peano number expressions
      */
-//    @StudentImplementationRequired
-//    public static PeanoNumberExpression[] fromNumberExpressions(NumberExpression[] numberExpressions) {
-//        return crash(); // TODO: H4.3 - remove if implemented
-//    }
+    @StudentImplementationRequired
+    public static PeanoNumberExpression[] fromNumberExpressions(NumberExpression[] numberExpressions) {
+        return Arrays.stream(numberExpressions)
+            .map(x -> new ConvertNumberToPeanoExpressionImpl().convert(x))
+            .toArray(PeanoNumberExpression[]::new);
+    }
 
     /**
      * Folds an array of Peano number expressions into a single Peano number expression.
@@ -28,8 +34,8 @@ public class PeanoNumberExpressionFactory {
      * @param operation the operation to apply
      * @return the folded Peano number expression
      */
-//    @StudentImplementationRequired
-//    public static PeanoNumberExpression fold(PeanoNumberExpression[] peanoNumberExpressions, PeanoNumberExpression initial, PeanoArithmeticExpression operation) {
-//        return crash(); // TODO: H4.5 - remove if implemented
-//    }
+    @StudentImplementationRequired
+    public static PeanoNumberExpression fold(PeanoNumberExpression[] peanoNumberExpressions, PeanoNumberExpression initial, PeanoArithmeticExpression operation) {
+        return Arrays.stream(peanoNumberExpressions).reduce(initial, (i,a) -> operation.evaluate(i,a));
+    }
 }
