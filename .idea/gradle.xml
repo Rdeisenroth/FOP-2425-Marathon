@@ -6,7 +6,6 @@
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/H00" />
         <option name="gradleHome" value="/usr/share/java/gradle" />
-        <option name="gradleJvm" value="temurin-21" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/H00" />
@@ -80,6 +79,56 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/H07" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/H08" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/H08" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/H09" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/H09" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/H10" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/H10" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/H11" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/H11" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/H12" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/H12" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -159,6 +208,56 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/solution/H07" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/solution/H08" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/solution/H08" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/solution/H09" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/solution/H09" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/solution/H10" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/solution/H10" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/solution/H11" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/solution/H11" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/solution/H12" />
+        <option name="gradleHome" value="/usr/share/java/gradle" />
+        <option name="gradleJvm" value="temurin-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/solution/H12" />
           </set>
         </option>
       </GradleProjectSettings>

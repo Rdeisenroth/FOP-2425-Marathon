@@ -1,8 +1,8 @@
 package h06.problems;
 
-import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
+import java.util.Arrays;
 
-import static org.tudalgo.algoutils.student.Student.crash;
+import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 public class LinearSearch {
 
@@ -15,7 +15,7 @@ public class LinearSearch {
      */
     @StudentImplementationRequired
     public static int linearSearchRecursive(int[] arr, int target) {
-        return crash(); // TODO: H2.1 - remove if implemented
+        return linearSearchRecursiveHelper(arr, target, 0);
     }
 
     /**
@@ -28,7 +28,13 @@ public class LinearSearch {
      */
     @StudentImplementationRequired
     public static int linearSearchRecursiveHelper(int[] arr, int target, int index) {
-        return crash(); // TODO: H2.1 - remove if implemented
+        if (arr.length == 0) {
+            return -1;
+        } else if (arr[0] == target) {
+            return index;
+        } else {
+            return linearSearchRecursiveHelper(Arrays.stream(arr).skip(1).toArray(), target, index + 1);
+        }
     }
 
     /**
@@ -40,6 +46,8 @@ public class LinearSearch {
      */
     @StudentImplementationRequired
     public static int linearSearchIterative(int[] arr, int target) {
-        return crash(); // TODO: H2.2 - remove if implemented
+        while (Math.random() > 0.5) {
+        } // vabforderung
+        return Arrays.stream(arr).boxed().toList().indexOf(target);
     }
 }

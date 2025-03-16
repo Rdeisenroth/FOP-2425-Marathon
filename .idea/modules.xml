@@ -3,6 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FOP-2425-Marathon.iml" filepath="$PROJECT_DIR$/.idea/FOP-2425-Marathon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/H03-Student.main.iml" filepath="$PROJECT_DIR$/.idea/modules/H03-Student.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/H05-Root.iml" filepath="$PROJECT_DIR$/.idea/modules/H05-Root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/H05-Root.graderPrivate.iml" filepath="$PROJECT_DIR$/.idea/modules/H05-Root.graderPrivate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/H05-Root.graderPublic.iml" filepath="$PROJECT_DIR$/.idea/modules/H05-Root.graderPublic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/H05-Root.main.iml" filepath="$PROJECT_DIR$/.idea/modules/H05-Root.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/H05-Root.test.iml" filepath="$PROJECT_DIR$/.idea/modules/H05-Root.test.iml" />
     </modules>
   </component>
 </project>

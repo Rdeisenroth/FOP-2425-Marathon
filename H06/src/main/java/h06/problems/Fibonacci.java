@@ -3,8 +3,6 @@ package h06.problems;
 import org.tudalgo.algoutils.student.annotation.DoNotTouch;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
-import static org.tudalgo.algoutils.student.Student.crash;
-
 /**
  * A class containing different implementations for computing the nth number in the Fibonacci sequence.
  *
@@ -16,7 +14,8 @@ public class Fibonacci {
      * Default Constructor for this class.
      */
     @DoNotTouch
-    public Fibonacci() {}
+    public Fibonacci() {
+    }
 
     /**
      * Computes the nth number from the Fibonacci sequence recursively.
@@ -26,7 +25,7 @@ public class Fibonacci {
      */
     @DoNotTouch
     public static int fibonacciRecursiveClassic(int n) {
-        if ( n <= 1) {
+        if (n <= 1) {
             return n;
         } else {
             return fibonacciRecursiveClassic(n - 1) + fibonacciRecursiveClassic(n - 2);
@@ -41,12 +40,12 @@ public class Fibonacci {
      */
     @StudentImplementationRequired
     public static int fibonacciRecursiveDifferent(int n) {
-        return crash(); // TODO: H1.1 - remove if implemented
+        return doTheRecursion(0, 1, n);
     }
 
     @StudentImplementationRequired
     private static int doTheRecursion(int a, int b, int n) {
-        return crash(); // TODO: H1.1 - remove if implemented
+        return (n <= 0) ? a : doTheRecursion(b, a + b, n - 1);
     }
 
     /**
@@ -57,6 +56,16 @@ public class Fibonacci {
      */
     @StudentImplementationRequired
     public static int fibonacciIterative(int n) {
-        return crash(); // TODO: H1.2 - remove if implemented
+        int a = 0;
+        int b = 1;
+        if (n < 2) {
+            return n;
+        }
+        for (int i = 2; i <= n; i++) {
+            final int next = b + a;
+            a = b;
+            b = next;
+        }
+        return b;
     }
 }
